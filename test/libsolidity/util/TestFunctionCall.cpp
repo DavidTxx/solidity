@@ -19,7 +19,7 @@
 
 #include <libsolutil/AnsiColorized.h>
 
-#include <boost/algorithm/string/replace.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include <optional>
 #include <stdexcept>
@@ -266,6 +266,7 @@ string TestFunctionCall::formatBytesParameters(
 			if (preferredParams)
 			{
 				ContractABIUtils::overwriteParameters(_errorReporter, preferredParams.value(), abiParams.value());
+				preferredParams.value().begin()->abiType = abiParams.value().begin()->abiType;
 				os << BytesUtils::formatBytesRange(_bytes, preferredParams.value(), _highlight);
 			}
 		}
@@ -274,6 +275,7 @@ string TestFunctionCall::formatBytesParameters(
 			ParameterList defaultParameters = ContractABIUtils::defaultParameters((_bytes.size() + 31) / 32);
 
 			ContractABIUtils::overwriteParameters(_errorReporter, defaultParameters, _parameters);
+			defaultParameters.begin()->abiType = _parameters.begin()->abiType;
 			os << BytesUtils::formatBytesRange(_bytes, defaultParameters, _highlight);
 		}
 		return os.str();
@@ -371,5 +373,11 @@ void TestFunctionCall::reset()
 
 bool TestFunctionCall::matchesExpectation() const
 {
-	return m_failure == m_call.expectations.failure && m_rawBytes == m_call.expectations.rawBytes();
+	bool fixedPointTypeMatch = true;
+	ErrorReporter errorReporter;
+	std::optional<ParameterList> returnType =
+		ContractABIUtils::parametersFromJsonOutputs(errorReporter, m_contractABI, m_call.signature);
+	if (returnType.has_value())
+		fixedPointTypeMatch = m_call.expectations.result.begin()->abiType.fractionalDigits == returnType.value().begin()->abiType.fractionalDigits;
+	return m_failure == m_call.expectations.failure && m_rawBytes == m_call.expectations.rawBytes() && fixedPointTypeMatch;
 }

@@ -20,6 +20,8 @@
 
 #include <test/libsolidity/util/SoltestErrors.h>
 
+#include <libsolidity/ast/Types.h>
+#include <libsolidity/ast/TypeProvider.h>
 #include <libsolutil/FunctionSelector.h>
 #include <libsolutil/CommonData.h>
 
@@ -200,6 +202,18 @@ bool ContractABIUtils::appendTypesFromName(
 )
 {
 	string type = _functionOutput["type"].asString();
+	FixedPointType const* fixedPointType = nullptr;
+	smatch matches;
+	if (regex_match(type, matches, regex{"(.?)fixed(\\d+)x(\\d+)"}))
+	{
+		FixedPointType::Modifier modifier{FixedPointType::Modifier::Signed};
+		if (matches[1].str() == "u")
+			modifier = FixedPointType::Modifier::Unsigned;
+		unsigned totalBits = static_cast<unsigned>(std::stoi(matches[2].str()));
+		unsigned fractionalDigits = static_cast<unsigned>(std::stoi(matches[3].str()));
+		fixedPointType = TypeProvider::fixedPoint(totalBits, fractionalDigits, modifier);
+	}
+
 	if (isBool(type))
 		_inplaceTypes.push_back(ABIType{ABIType::Boolean});
 	else if (isUint(type))
@@ -244,6 +258,15 @@ bool ContractABIUtils::appendTypesFromName(
 			_dynamicTypes.push_back(ABIType{ABIType::UnsignedDec});
 			_dynamicTypes.push_back(ABIType{ABIType::String, ABIType::AlignLeft});
 		}
+	}
+	else if (fixedPointType != nullptr)
+	{
+		ABIType abiType{ABIType::UnsignedFixedPoint};
+		if (fixedPointType->isSigned())
+			abiType.type = ABIType::SignedFixedPoint;
+		abiType.bits = fixedPointType->numBits();
+		abiType.fractionalDigits = fixedPointType->fractionalDigits();
+		_inplaceTypes.push_back(abiType);
 	}
 	else if (isBytes(type))
 		return false;
