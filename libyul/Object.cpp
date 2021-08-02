@@ -57,7 +57,16 @@ string Data::toString(Dialect const*, optional<SourceNameMap>) const
 
 string Object::toString(Dialect const* _dialect) const
 {
-	return toString(_dialect, debugData ? debugData->sourceNames : optional<SourceNameMap>{});
+	string useSrcComment;
+
+	if (debugData && debugData->sourceNames)
+		useSrcComment =
+			"/// @use-src " +
+			joinHumanReadable(ranges::views::transform(*debugData->sourceNames, [](auto&& _pair) {
+				return to_string(_pair.first) + ":" + util::escapeAndQuoteString(*_pair.second);
+			})) +
+			"\n";
+	return useSrcComment + toString(_dialect, debugData ? debugData->sourceNames : optional<SourceNameMap>{});
 }
 
 string Object::toString(Dialect const* _dialect, std::optional<SourceNameMap> _sourceNames) const
@@ -72,18 +81,8 @@ string Object::toString(Dialect const* _dialect, std::optional<SourceNameMap> _s
 		inner += "\n" + obj->toString(_dialect, _sourceNames);
 	}
 
-	string useSrcComment;
-
-	if (_sourceNames)
-		useSrcComment =
-			"/// @use-src " +
-			joinHumanReadable(ranges::views::transform(*_sourceNames, [](auto&& _pair) {
-				return to_string(_pair.first) + ":" + util::escapeAndQuoteString(*_pair.second);
-			})) +
-			"\n";
-
 	return
-		useSrcComment + "object \"" + name.str() + "\" {\n" + indent(inner) + "\n}";
+		"object \"" + name.str() + "\" {\n" + indent(inner) + "\n}";
 }
 
 set<YulString> Object::qualifiedDataNames() const
