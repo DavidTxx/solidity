@@ -209,9 +209,10 @@ string AsmPrinter::operator()(Continue const& _continue)
 	return formatSourceLocationComment(_continue) + "continue";
 }
 
-string AsmPrinter::operator()(Leave const& _leave)
+// '_leave' and '__leave' is reserved in VisualStudio
+string AsmPrinter::operator()(Leave const& leave_)
 {
-	return formatSourceLocationComment(_leave) + "leave";
+	return formatSourceLocationComment(leave_) + "leave";
 }
 
 string AsmPrinter::operator()(Block const& _block)
