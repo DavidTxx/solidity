@@ -37,6 +37,8 @@ struct AsmAnalysisInfo;
 
 using SourceNameMap = std::map<unsigned, std::shared_ptr<std::string const>>;
 
+struct Object;
+
 /**
  * Generic base class for both Yul objects and Yul data.
  */
@@ -47,9 +49,11 @@ struct ObjectNode
 	/// Name of the object.
 	/// Can be empty since .yul files can also just contain code, without explicitly placing it in an object.
 	YulString name;
-
-	/// Only for internal use. Use Object::toString(Dialect const*) instead.
+protected:
 	virtual std::string toString(Dialect const* _dialect, std::optional<SourceNameMap> _sourceNames) const = 0;
+
+	/// Object should have access to toString
+	friend struct Object;
 };
 
 /**
@@ -61,7 +65,7 @@ struct Data: public ObjectNode
 
 	bytes data;
 
-	/// Only for internal use. Use Object::toString(Dialect const*) instead.
+protected:
 	std::string toString(Dialect const* _dialect, std::optional<SourceNameMap> _sourceNames) const override;
 };
 
@@ -110,8 +114,7 @@ public:
 
 	/// @returns the name of the special metadata data object.
 	static std::string metadataName() { return ".metadata"; }
-
-	/// Only for internal use. Use Object::toString(Dialect const*) instead.
+protected:
 	std::string toString(Dialect const* _dialect, std::optional<SourceNameMap> _sourceNames) const override;
 };
 
