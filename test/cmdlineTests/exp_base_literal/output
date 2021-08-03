@@ -212,8 +212,8 @@ object "C_81" {
                 converted := cleanup_t_int256(value)
             }
 
+            /// @src 0:96:368
             function fun_f_80(var_a_4, var_b_6, var_c_8, var_d_10) -> var__13, var__15, var__17, var__19 {
-                /// @src 0:96:368
                 /// @src 0:160:164
                 let zero_t_uint256_1 := zero_value_for_split_t_uint256()
                 var__13 := zero_t_uint256_1
@@ -336,6 +336,7 @@ object "C_81" {
                 leave
 
             }
+            /// @src 0:82:370
 
             function panic_error_0x11() {
                 mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)

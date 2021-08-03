@@ -26,18 +26,10 @@ object "Arraysum_34" {
                 if iszero(lt(calldatasize(), 4))
                 {
                     let _1 := 0
-                    if eq(0x81d73423, /** @src 0:407:423 */ shr(224, /** @src 0:80:429 */ calldataload(_1)))
+                    if eq(0x81d73423, shr(224, calldataload(_1)))
                     {
-                        if callvalue()
-                        {
-                            /// @src 0:407:423
-                            revert(/** @src 0:80:429 */ _1, _1)
-                        }
-                        if slt(add(calldatasize(), not(3)), _1)
-                        {
-                            /// @src 0:407:423
-                            revert(/** @src 0:80:429 */ _1, _1)
-                        }
+                        if callvalue() { revert(_1, _1) }
+                        if slt(add(calldatasize(), not(3)), _1) { revert(_1, _1) }
                         let var_sum := _1
                         /// @src 0:368:378
                         let var_i := /** @src 0:80:429 */ _1
@@ -47,18 +39,16 @@ object "Arraysum_34" {
                         /** @src 0:380:397 */ lt(var_i, _2)
                         /// @src 0:368:378
                         {
-                            /// @src 0:407:423
+                            /// @src 0:80:429
                             if eq(var_i, not(0)) { panic_error_0x11() }
                             /// @src 0:399:402
-                            var_i := /** @src 0:407:423 */ add(var_i, 1)
+                            var_i := /** @src 0:80:429 */ add(var_i, 1)
                         }
                         /// @src 0:399:402
                         {
                             /// @src 0:80:429
                             mstore(_1, _1)
-                            /// @src 0:407:423
-                            let _3 := sload(add(/** @src 0:80:429 */ 18569430475105882587588266137607568536673111973893317399460219858819262702947, /** @src 0:407:423 */ var_i))
-                            /// @src 0:80:429
+                            let _3 := sload(add(18569430475105882587588266137607568536673111973893317399460219858819262702947, var_i))
                             if gt(var_sum, not(_3)) { panic_error_0x11() }
                             /// @src 0:407:423
                             var_sum := /** @src 0:80:429 */ add(var_sum, _3)
@@ -67,16 +57,13 @@ object "Arraysum_34" {
                         return(memPos, sub(abi_encode_uint256(memPos, var_sum), memPos))
                     }
                 }
-                /// @src 0:407:423
                 revert(0, 0)
             }
-            /// @src 0:80:429
             function abi_encode_uint256(headStart, value0) -> tail
             {
                 tail := add(headStart, 32)
                 mstore(headStart, value0)
             }
-            /// @src 0:407:423
             function panic_error_0x11()
             {
                 mstore(0, shl(224, 0x4e487b71))

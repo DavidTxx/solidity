@@ -150,8 +150,8 @@ object \"C_11\" {
                 mstore(64, newFreePtr)
             }
 
+            /// @src 0:91:241
             function fun_f_10() -> var__5_mpos {
-                /// @src 0:91:241
                 /// @src 0:127:140
                 let zero_t_string_memory_ptr_1_mpos := zero_value_for_split_t_string_memory_ptr()
                 var__5_mpos := zero_t_string_memory_ptr_1_mpos
@@ -161,6 +161,7 @@ object \"C_11\" {
                 leave
 
             }
+            /// @src 0:78:243
 
             function panic_error_0x41() {
                 mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)

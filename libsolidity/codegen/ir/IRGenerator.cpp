@@ -279,8 +279,8 @@ InternalDispatchMap IRGenerator::generateInternalDispatchFunctions(ContractDefin
 		string funName = IRNames::internalDispatch(arity);
 		m_context.functionCollector().createFunction(funName, [&]() {
 			Whiskers templ(R"(
+				<sourceLocationComment>
 				function <functionName>(fun<?+in>, <in></+in>) <?+out>-> <out></+out> {
-					<sourceLocationComment>
 					switch fun
 					<#cases>
 					case <funID>
@@ -336,14 +336,16 @@ string IRGenerator::generateFunction(FunctionDefinition const& _function)
 	return m_context.functionCollector().createFunction(functionName, [&]() {
 		m_context.resetLocalVariables();
 		Whiskers t(R"(
+			<sourceLocationComment>
 			function <functionName>(<params>)<?+retParams> -> <retParams></+retParams> {
-				<sourceLocationComment>
 				<retInit>
 				<body>
 			}
+			<contractSourceLocationComment>
 		)");
 
 		t("sourceLocationComment", sourceLocationComment(_function, m_context));
+		t("contractSourceLocationComment", sourceLocationComment(*_function.annotation().contract, m_context));
 
 		t("functionName", functionName);
 		vector<string> params;

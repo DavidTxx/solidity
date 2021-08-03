@@ -31,22 +31,13 @@ object "D_12" {
                 if iszero(lt(calldatasize(), 4))
                 {
                     let _1 := 0
-                    if eq(0x26121ff0, /** @src 0:132:159 */ shr(224, /** @src 0:82:161 */ calldataload(_1)))
+                    if eq(0x26121ff0, shr(224, calldataload(_1)))
                     {
-                        if callvalue()
-                        {
-                            /// @src 0:132:159
-                            revert(/** @src 0:82:161 */ _1, _1)
-                        }
-                        if slt(add(calldatasize(), not(3)), _1)
-                        {
-                            /// @src 0:132:159
-                            revert(/** @src 0:82:161 */ _1, _1)
-                        }
+                        if callvalue() { revert(_1, _1) }
+                        if slt(add(calldatasize(), not(3)), _1) { revert(_1, _1) }
                         return(128, _1)
                     }
                 }
-                /// @src 0:132:159
                 revert(0, 0)
             }
         }

@@ -815,6 +815,7 @@ sub_0: assembly {
       pop
       pop
       jump\t// out
+        /* \"C\":343:426  function f2() m public returns (int)... */
     tag_30:
       0x00
         /* \"C\":375:378  int */
@@ -832,11 +833,11 @@ sub_0: assembly {
     tag_108:
       swap2
       pop
-        /* \"C\":117:119  41 */
+        /* \"C\":343:426  function f2() m public returns (int)... */
       pop
       swap1
       jump\t// out
-        /* \"C\":375:378  int */
+        /* \"C\":79:428  contract C... */
     tag_110:
       0x00
         /* \"C\":343:426  function f2() m public returns (int)... */
@@ -960,12 +961,12 @@ sub_0: assembly {
       pop
       pop
       pop
-        /* \"C\":375:378  int */
+        /* \"C\":79:428  contract C... */
       swap2
       swap1
       pop
       jump\t// out
-        /* \"C\":385:422  return stateVar + this.f() + immutVar */
+        /* \"C\":226:302  function f() external pure returns (int)... */
     tag_14:
       0x00
         /* \"C\":262:265  int */
@@ -1000,10 +1001,10 @@ sub_0: assembly {
       pop
       pop
       pop
-        /* \"C\":385:422  return stateVar + this.f() + immutVar */
+        /* \"C\":226:302  function f() external pure returns (int)... */
       swap1
       jump\t// out
-        /* \"C\":272:298  return constVar + immutVar */
+        /* \"C\":79:428  contract C... */
     tag_23:
       0x00
         /* \"C\":152:171  int public stateVar */
@@ -1017,7 +1018,7 @@ sub_0: assembly {
     tag_135:
       swap3
       pop
-        /* \"C\":272:298  return constVar + immutVar */
+        /* \"C\":79:428  contract C... */
       pop
       pop
       swap1
@@ -2304,6 +2305,7 @@ sub_0: assembly {
       pop
       pop
       jump\t// out
+        /* \"C\":343:426  function f2() m public returns (int)... */
     tag_30:
       0x00
         /* \"C\":375:378  int */
@@ -2321,11 +2323,11 @@ sub_0: assembly {
     tag_108:
       swap2
       pop
-        /* \"C\":117:119  41 */
+        /* \"C\":343:426  function f2() m public returns (int)... */
       pop
       swap1
       jump\t// out
-        /* \"C\":375:378  int */
+        /* \"C\":79:428  contract C... */
     tag_110:
       0x00
         /* \"C\":343:426  function f2() m public returns (int)... */
@@ -2449,12 +2451,12 @@ sub_0: assembly {
       pop
       pop
       pop
-        /* \"C\":375:378  int */
+        /* \"C\":79:428  contract C... */
       swap2
       swap1
       pop
       jump\t// out
-        /* \"C\":385:422  return stateVar + this.f() + immutVar */
+        /* \"C\":226:302  function f() external pure returns (int)... */
     tag_14:
       0x00
         /* \"C\":262:265  int */
@@ -2489,10 +2491,10 @@ sub_0: assembly {
       pop
       pop
       pop
-        /* \"C\":385:422  return stateVar + this.f() + immutVar */
+        /* \"C\":226:302  function f() external pure returns (int)... */
       swap1
       jump\t// out
-        /* \"C\":272:298  return constVar + immutVar */
+        /* \"C\":79:428  contract C... */
     tag_23:
       0x00
         /* \"C\":152:171  int public stateVar */
@@ -2506,7 +2508,7 @@ sub_0: assembly {
     tag_135:
       swap3
       pop
-        /* \"C\":272:298  return constVar + immutVar */
+        /* \"C\":79:428  contract C... */
       pop
       pop
       swap1

@@ -303,14 +303,15 @@ object \"C_54\" {
                 mstore(64, newFreePtr)
             }
 
+            /// @src 0:343:426
             function fun_f2_53() -> var__42 {
-                /// @src 0:343:426
                 /// @src 0:375:378
                 let zero_t_int256_4 := zero_value_for_split_t_int256()
                 var__42 := zero_t_int256_4
 
                 var__42 := modifier_m_40(var__42)
             }
+            /// @src 0:79:428
 
             function fun_f2_53_inner(_8) -> var__42 {
                 /// @src 0:343:426
@@ -360,8 +361,8 @@ object \"C_54\" {
 
             }
 
+            /// @src 0:226:302
             function fun_f_30() -> var__23 {
-                /// @src 0:226:302
                 /// @src 0:262:265
                 let zero_t_int256_1 := zero_value_for_split_t_int256()
                 var__23 := zero_t_int256_1
@@ -379,6 +380,7 @@ object \"C_54\" {
                 leave
 
             }
+            /// @src 0:79:428
 
             function getter_fun_stateVar_10() -> ret {
                 /// @src 0:152:171
@@ -894,14 +896,15 @@ object \"D_72\" {
                 mstore(64, newFreePtr)
             }
 
+            /// @src 0:343:426
             function fun_f2_53() -> var__42 {
-                /// @src 0:343:426
                 /// @src 0:375:378
                 let zero_t_int256_4 := zero_value_for_split_t_int256()
                 var__42 := zero_t_int256_4
 
                 var__42 := modifier_m_40(var__42)
             }
+            /// @src 0:79:428
 
             function fun_f2_53_inner(_8) -> var__42 {
                 /// @src 0:343:426
@@ -951,8 +954,8 @@ object \"D_72\" {
 
             }
 
+            /// @src 0:226:302
             function fun_f_30() -> var__23 {
-                /// @src 0:226:302
                 /// @src 0:262:265
                 let zero_t_int256_1 := zero_value_for_split_t_int256()
                 var__23 := zero_t_int256_1
@@ -970,6 +973,7 @@ object \"D_72\" {
                 leave
 
             }
+            /// @src 0:79:428
 
             function getter_fun_stateVar_10() -> ret {
                 /// @src 0:152:171

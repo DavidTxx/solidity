@@ -29,11 +29,8 @@ object "C_12" {
             {
                 /// @src 0:61:418
                 mstore(64, 128)
-                if callvalue()
-                {
-                    /// @src 0:279:410
-                    revert(0, 0)
-                }
+                if callvalue() { revert(0, 0) }
+                /// @src 0:279:410
                 sstore(0, 0x1000000000000000000000000000000000000000000000)
                 /// @src 0:61:418
                 stop()

@@ -150,8 +150,8 @@ object \"D_16\" {
                 memPtr := mload(64)
             }
 
+            /// @src 0:106:144
             function fun_f_15() {
-                /// @src 0:106:144
 
                 /// @src 0:134:141
                 let _1 := allocate_unbounded()
@@ -168,6 +168,7 @@ object \"D_16\" {
                 let var_c_8_address := expr_12_address
 
             }
+            /// @src 0:93:146
 
             function panic_error_0x41() {
                 mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)

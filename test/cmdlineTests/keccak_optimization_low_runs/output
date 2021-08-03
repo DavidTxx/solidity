@@ -23,11 +23,8 @@ object "C_7" {
             {
                 /// @src 0:62:285
                 mstore(64, 128)
-                if callvalue()
-                {
-                    /// @src 0:109:277
-                    revert(0, 0)
-                }
+                if callvalue() { revert(0, 0) }
+                /// @src 0:109:277
                 mstore(0, 100)
                 sstore(0, keccak256(0, 32))
                 /// @src 0:62:285
